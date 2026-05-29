@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { TextureBg } from "@/components/ui/texture-bg";
 import { cn } from "@/lib/utils";
 import { getNavHue, navHueClass } from "@/lib/nav-hue";
 
@@ -10,7 +11,7 @@ export function WorkspaceHeaderBg() {
 
   return (
     <div className={cn("workspace-header-bg", navHueClass[hue])} aria-hidden>
-      <div className="workspace-header-bg__texture" />
+      <TextureBg className="workspace-header-bg__texture" />
       <div className="workspace-header-bg__tint" />
     </div>
   );

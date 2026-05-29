@@ -1,3 +1,5 @@
+import { TextureBg } from "@/components/ui/texture-bg";
+
 type PageSectionHeaderProps = {
   title: string;
   description?: string;
@@ -15,7 +17,7 @@ export function PageSectionHeader({
 }: PageSectionHeaderProps) {
   return (
     <div className="section-band-dark relative shrink-0 overflow-hidden">
-      <div className="section-band-dark__bg" aria-hidden />
+      <TextureBg className="section-band-dark__bg" />
       <div className="section-band-dark__inner px-6 py-4 lg:px-8">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0 flex-1">

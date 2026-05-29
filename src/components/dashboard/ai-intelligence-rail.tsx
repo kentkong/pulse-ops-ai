@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { cn, formatCurrency } from "@/lib/utils";
 import type { AIInsight, NextBestAction, PriorityAccount } from "@/types";
+import { TextureBg } from "@/components/ui/texture-bg";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 function matchAction(account: PriorityAccount, actions: NextBestAction[]) {
@@ -42,7 +43,7 @@ export function AIIntelligenceBand({
   return (
     <section id="section-actions" className="ai-intelligence-band shrink-0">
       <div className="ai-rail-header relative overflow-hidden">
-        <div className="ai-rail-header__bg" aria-hidden />
+        <TextureBg className="ai-rail-header__bg" />
         <div className="ai-rail-header__inner flex flex-wrap items-center justify-between gap-3 px-6 py-2.5 lg:px-8">
           <div className="flex items-center gap-2">
             <Sparkles className="h-3.5 w-3.5 text-[#f1c40f]" />

@@ -12,6 +12,7 @@ import {
   Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { TextureBg } from "@/components/ui/texture-bg";
 import { stackIntegrations } from "@/lib/mock-data";
 
 const navigation = [
@@ -38,7 +39,7 @@ export function TopNav() {
     <nav className="block w-full max-w-none border-b border-border bg-[#f4f4f4]">
       {/* Page title row — Executive Operations Command Center */}
       <div className="command-banner flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="command-banner__bg" aria-hidden="true" />
+        <TextureBg texture="command" className="command-banner__bg" />
         <h2 className="heading-display relative z-[1] !text-base sm:!text-lg">
           Executive Operations <span>Command Center</span>
         </h2>

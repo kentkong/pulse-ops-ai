@@ -1,6 +1,7 @@
 "use client";
 
 import type { KanbanColumn } from "@/types";
+import { TextureBg } from "@/components/ui/texture-bg";
 import { cn } from "@/lib/utils";
 
 const healthTone = {
@@ -30,7 +31,7 @@ export function LifecycleOpsBoard({ columns }: { columns: KanbanColumn[] }) {
   return (
     <section className="flex min-h-0 flex-1 flex-col" id="section-kanban">
       <div className="section-band-dark relative shrink-0 overflow-hidden">
-        <div className="section-band-dark__bg" aria-hidden />
+        <TextureBg className="section-band-dark__bg" />
         <div className="section-band-dark__inner flex flex-wrap items-center justify-between gap-2 px-6 py-2 lg:px-8">
           <div className="flex flex-wrap items-center gap-2">
             <h2 className="text-[13px] font-semibold text-white">Lifecycle Operations Board</h2>

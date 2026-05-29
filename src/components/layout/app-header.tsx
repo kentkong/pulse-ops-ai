@@ -1,9 +1,10 @@
+import { TextureBg } from "@/components/ui/texture-bg";
 import { PulseOpsMark } from "@/components/ui/pulse-ops-mark";
 
 export function AppHeader() {
   return (
     <header className="hero-banner">
-      <div className="hero-banner__bg" aria-hidden="true" />
+      <TextureBg texture="hero" className="hero-banner__bg" />
       <div className="hero-banner__inner">
         <div className="flex items-center gap-4">
           <PulseOpsMark size="lg" />

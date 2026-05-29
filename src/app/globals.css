@@ -290,7 +290,7 @@ body {
   z-index: 0;
   width: var(--workspace-sidebar-width);
   background-color: #3a3a3e;
-  background-image: url("/pulse-ops-ai/images/pulse-ops-texture.png");
+  background-image: var(--texture-pulse-ops);
   background-size: cover;
   background-position: left top;
   background-repeat: no-repeat;
@@ -323,7 +323,7 @@ body {
   position: absolute;
   inset: 0;
   background-color: #3a3a3e;
-  background-image: url("/pulse-ops-ai/images/pulse-ops-texture.png");
+  background-image: var(--texture-pulse-ops);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -455,7 +455,7 @@ body {
   inset: 0;
   z-index: 0;
   background-color: #3a3a3e;
-  background-image: url("/pulse-ops-ai/images/pulse-ops-texture.png");
+  background-image: var(--texture-pulse-ops);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -467,7 +467,7 @@ body {
   inset: 0;
   z-index: 0;
   background-color: #3a3a3e;
-  background-image: url("/pulse-ops-ai/images/pulse-ops-texture.png");
+  background-image: var(--texture-pulse-ops);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -627,7 +627,7 @@ body {
   inset: 0;
   z-index: 0;
   background-color: #3a3a3e;
-  background-image: url("/pulse-ops-ai/images/pulse-ops-texture.png");
+  background-image: var(--texture-pulse-ops);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1119,7 +1119,7 @@ body {
   inset: 0;
   z-index: 0;
   background-color: #1a1a1a;
-  background-image: url("/pulse-ops-ai/images/pulse-ops-texture.png");
+  background-image: var(--texture-pulse-ops);
   background-size: cover;
   background-position: center;
   pointer-events: none;
@@ -1222,7 +1222,7 @@ body {
   inset: 0;
   z-index: 0;
   background-color: #1a1a1a;
-  background-image: url("/pulse-ops-ai/images/pulse-ops-texture.png");
+  background-image: var(--texture-pulse-ops);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1275,7 +1275,7 @@ body {
   inset: 0;
   z-index: 0;
   background-color: #1a1a1a;
-  background-image: url("/pulse-ops-ai/images/pulse-ops-texture.png");
+  background-image: var(--texture-pulse-ops);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1353,7 +1353,7 @@ body {
   width: 100vw;
   transform: translateX(-50%);
   background-color: #1a1a1a;
-  background-image: url("/pulse-ops-ai/images/hero-texture.png");
+  background-image: var(--texture-hero);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1413,7 +1413,7 @@ body {
   width: 100vw;
   transform: translateX(-50%);
   background-color: #f1c40f;
-  background-image: url("/pulse-ops-ai/images/command-texture.png");
+  background-image: var(--texture-command);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
