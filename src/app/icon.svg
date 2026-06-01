@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Pulse-Ops AI">
+  <rect width="32" height="32" rx="8" fill="#050505"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="none" stroke="#eab308" stroke-opacity="0.45"/>
+  <text x="16" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#eab308" text-anchor="middle">P</text>
+</svg>
