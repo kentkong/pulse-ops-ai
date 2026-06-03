@@ -95,9 +95,10 @@ export function WorkspaceContextBand() {
                 transform="rotate(-6 470 38)"
               />
             </svg>
-            <div className="relative z-10 flex items-center gap-3">
-              <PulseOpsMark size="lg" />
-              <h1 className="ml-1 text-2xl font-bold tracking-tighter text-[#1a1a1a] sm:text-3xl lg:text-4xl">
+            <div className="relative z-10 flex items-center gap-2 sm:gap-3">
+              <PulseOpsMark size="md" className="sm:hidden" />
+              <PulseOpsMark size="lg" className="hidden sm:block" />
+              <h1 className="ml-0 text-xl font-bold tracking-tighter text-[#1a1a1a] sm:ml-1 sm:text-3xl lg:text-4xl">
                 Pulse-Ops <span className="text-[#f1c40f]">AI</span>
               </h1>
             </div>
