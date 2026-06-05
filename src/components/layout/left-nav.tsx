@@ -13,7 +13,7 @@ export function LeftNavTabs() {
       className="left-nav left-nav--banner relative z-[1] flex h-full w-full flex-col justify-start"
       aria-label="Navigation"
     >
-      <ul className="left-nav__items flex h-full flex-col justify-start gap-0.5">
+      <ul className="left-nav__items flex h-full flex-col justify-start gap-1">
         {workspaceNav.map((item) => {
           const Icon = item.icon;
           const active = isNavActive(pathname, item.href);
@@ -24,17 +24,17 @@ export function LeftNavTabs() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "nav-tab group relative flex w-full items-center gap-1.5 rounded-md px-2 py-1 transition-all",
+                  "nav-tab group relative flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 transition-all duration-200",
                   `nav-tab--${item.hue}`,
                   active && "nav-tab--active"
                 )}
               >
                 <span className="nav-tab__bg" aria-hidden />
                 <span className="nav-tab__stripe" aria-hidden />
-                <Icon className="nav-tab__icon h-[14px] w-[14px] shrink-0" strokeWidth={1.75} />
-                <span className="nav-tab__label min-w-0 text-[10px] font-medium leading-tight">
-                  {item.name}
+                <span className="nav-tab__icon-wrap">
+                  <Icon className="nav-tab__icon h-[15px] w-[15px] shrink-0" strokeWidth={1.85} />
                 </span>
+                <span className="nav-tab__label min-w-0">{item.name}</span>
               </Link>
             </li>
           );
