@@ -3,6 +3,8 @@
 import { StackIntegrationMark } from "@/components/ui/stack-integration-mark";
 import { cn } from "@/lib/utils";
 import { stackIntegrations } from "@/lib/mock-data";
+import { getStackIntegrationBrandClass } from "@/lib/stack-integration-meta";
+import { navHueClass, type NavHue } from "@/lib/nav-hue";
 
 function StackConnector({ index }: { index: number }) {
   return (
@@ -26,14 +28,18 @@ function StackConnector({ index }: { index: number }) {
   );
 }
 
-export function StackFlowPanel() {
+type StackFlowPanelProps = {
+  hue: NavHue;
+};
+
+export function StackFlowPanel({ hue }: StackFlowPanelProps) {
   const healthyCount = stackIntegrations.filter((s) => s.status === "connected").length;
   const totalCount = stackIntegrations.length;
   const allHealthy = healthyCount === totalCount;
 
   return (
     <div className="stack-flow" aria-label="Connected technology stack">
-      <div className="stack-flow__surface">
+      <div className={cn("stack-flow__surface", navHueClass[hue])}>
         <div className="stack-flow__header">
           <div className="stack-flow__heading">
             <span className="stack-flow__eyebrow">Connected Stack</span>
@@ -58,7 +64,12 @@ export function StackFlowPanel() {
                 style={{ animationDelay: `${index * 90 + 120}ms` }}
                 title={`${source.role} · ${source.latency}`}
               >
-                <div className="stack-flow__node-box">
+                <div
+                  className={cn(
+                    "stack-flow__node-box",
+                    getStackIntegrationBrandClass(source.name)
+                  )}
+                >
                   <span className="stack-flow__node-icon">
                     <StackIntegrationMark name={source.name} />
                   </span>
