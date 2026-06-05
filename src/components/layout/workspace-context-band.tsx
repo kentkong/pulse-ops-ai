@@ -3,11 +3,11 @@
 import { usePathname } from "next/navigation";
 import { PulseOpsMark } from "@/components/ui/pulse-ops-mark";
 import { NavPageMark } from "@/components/ui/nav-page-mark";
+import { StackIntegrationMark } from "@/components/ui/stack-integration-mark";
 import { cn } from "@/lib/utils";
 import { getActiveNavItem } from "@/lib/nav-config";
 import { navHueClass } from "@/lib/nav-hue";
-import { BannerNavTabs } from "@/components/layout/left-nav";
-import { StackFlowPanel } from "@/components/layout/stack-flow-panel";
+import { stackIntegrations } from "@/lib/mock-data";
 
 export function WorkspaceContextBand() {
   const pathname = usePathname();
@@ -27,6 +27,9 @@ export function WorkspaceContextBand() {
     month: "short",
     year: "numeric",
   });
+
+  const healthySources = stackIntegrations.filter((s) => s.status === "connected").length;
+  const totalSources = stackIntegrations.length;
 
   return (
     <section className={cn("context-band flex shrink-0 flex-col", navHueClass[page.hue])}>
@@ -87,10 +90,35 @@ export function WorkspaceContextBand() {
         <p className="context-band__datetime mt-2">
           {pragueDate} · {pragueTime} · Europe/Prague
         </p>
-      </div>
 
-      <StackFlowPanel />
-      <BannerNavTabs />
+        <div className="context-band__meta">
+          <div className="context-band__meta-stack-row">
+            <span className="context-band__stack-label">Stack</span>
+            <ul className="context-band__stack-list">
+              {stackIntegrations.map((source) => (
+                <li key={source.name}>
+                  <span
+                    className={cn(
+                      "context-band__stack-item",
+                      source.status === "connected" && "context-band__stack-item--healthy"
+                    )}
+                    title={`${source.role} · ${source.latency}`}
+                  >
+                    <StackIntegrationMark name={source.name} />
+                    {source.name}
+                    {source.status === "connected" && (
+                      <span className="context-band__stack-dot" aria-hidden />
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <span className="context-band__stack-summary">
+              {healthySources}/{totalSources} healthy
+            </span>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

@@ -5,23 +5,26 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { isNavActive, workspaceNav } from "@/lib/nav-config";
 
-export function BannerNavTabs() {
+export function LeftNavTabs() {
   const pathname = usePathname();
 
   return (
-    <nav className="banner-nav relative z-[1] w-full shrink-0" aria-label="Navigation">
-      <ul className="banner-nav__items">
+    <nav
+      className="left-nav left-nav--banner relative z-[1] flex h-full w-full flex-col justify-start"
+      aria-label="Navigation"
+    >
+      <ul className="left-nav__items flex h-full flex-col justify-start gap-1">
         {workspaceNav.map((item) => {
           const Icon = item.icon;
           const active = isNavActive(pathname, item.href);
 
           return (
-            <li key={item.name} className="banner-nav__item">
+            <li key={item.name} className="shrink-0">
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "nav-tab group relative flex h-full items-center justify-center gap-2 rounded-lg px-3 py-2 transition-all duration-200",
+                  "nav-tab group relative flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 transition-all duration-200",
                   `nav-tab--${item.hue}`,
                   active && "nav-tab--active"
                 )}
@@ -39,11 +42,6 @@ export function BannerNavTabs() {
       </ul>
     </nav>
   );
-}
-
-/** @deprecated Use BannerNavTabs */
-export function LeftNavTabs() {
-  return <BannerNavTabs />;
 }
 
 export function LeftNavRail() {
