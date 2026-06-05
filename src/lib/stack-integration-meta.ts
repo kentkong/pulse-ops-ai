@@ -15,3 +15,10 @@ export const stackIntegrationMarks: Record<string, StackIntegrationMarkConfig> =
 export function getStackIntegrationMark(name: string): StackIntegrationMarkConfig | undefined {
   return stackIntegrationMarks[name];
 }
+
+export function getStackIntegrationBrandClass(name: string): string {
+  const config = stackIntegrationMarks[name];
+  if (!config) return "";
+  if (config.kind === "pulse") return "context-band__stack-item--pulse";
+  return `context-band__stack-item--${config.hue}`;
+}

@@ -7,6 +7,7 @@ import { StackIntegrationMark } from "@/components/ui/stack-integration-mark";
 import { cn } from "@/lib/utils";
 import { getActiveNavItem } from "@/lib/nav-config";
 import { stackIntegrations } from "@/lib/mock-data";
+import { getStackIntegrationBrandClass } from "@/lib/stack-integration-meta";
 
 export function WorkspaceContextBand() {
   const pathname = usePathname();
@@ -108,7 +109,7 @@ export function WorkspaceContextBand() {
             <h2 className="text-2xl font-bold tracking-tighter text-[#1a1a1a] sm:text-3xl lg:text-4xl">
               {page.name}
             </h2>
-            <NavPageMark icon={page.icon} hue={page.hue} />
+            <NavPageMark icon={page.icon} hue={page.hue} size="lg" />
           </div>
         </div>
 
@@ -129,6 +130,7 @@ export function WorkspaceContextBand() {
                   <span
                     className={cn(
                       "context-band__stack-item",
+                      getStackIntegrationBrandClass(source.name),
                       source.status === "connected" && "context-band__stack-item--healthy"
                     )}
                     title={`${source.role} · ${source.latency}`}
