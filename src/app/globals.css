@@ -461,6 +461,8 @@ body {
 
 .workspace-main .stack-flow {
   padding: 0.75rem 1.5rem 0.625rem;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+  background: linear-gradient(180deg, #f4f4f7 0%, #fafafb 55%, #ffffff 100%);
 }
 
 @media (min-width: 1024px) {
@@ -471,12 +473,74 @@ body {
 
 .stack-flow__surface {
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   width: 100%;
   max-width: 100%;
-  background: transparent;
-  border: none;
-  box-shadow: none;
+  border-radius: 0.625rem;
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  box-shadow: 0 4px 18px rgba(26, 26, 26, 0.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.stack-flow__surface.nav-hue--snowflake {
+  background: linear-gradient(
+    135deg,
+    rgba(147, 197, 253, 0.78) 0%,
+    rgba(125, 180, 235, 0.68) 55%,
+    rgba(100, 155, 215, 0.72) 100%
+  );
+  border-color: rgba(90, 140, 200, 0.32);
+}
+
+.stack-flow__surface.nav-hue--lifecycle {
+  background: linear-gradient(
+    135deg,
+    rgba(52, 211, 153, 0.72) 0%,
+    rgba(45, 190, 135, 0.62) 55%,
+    rgba(38, 168, 118, 0.68) 100%
+  );
+  border-color: rgba(38, 140, 100, 0.32);
+}
+
+.stack-flow__surface.nav-hue--hightouch {
+  background: linear-gradient(
+    135deg,
+    rgba(216, 130, 255, 0.74) 0%,
+    rgba(195, 105, 235, 0.64) 55%,
+    rgba(175, 85, 215, 0.7) 100%
+  );
+  border-color: rgba(140, 70, 180, 0.32);
+}
+
+.stack-flow__surface.nav-hue--braze {
+  background: linear-gradient(
+    135deg,
+    rgba(251, 207, 232, 0.76) 0%,
+    rgba(240, 175, 205, 0.66) 55%,
+    rgba(225, 145, 180, 0.72) 100%
+  );
+  border-color: rgba(180, 90, 130, 0.32);
+}
+
+.stack-flow__surface.nav-hue--events {
+  background: linear-gradient(
+    135deg,
+    rgba(250, 204, 21, 0.78) 0%,
+    rgba(235, 185, 15, 0.68) 55%,
+    rgba(215, 165, 10, 0.74) 100%
+  );
+  border-color: rgba(180, 140, 20, 0.32);
+}
+
+.stack-flow__surface.nav-hue--architecture {
+  background: linear-gradient(
+    135deg,
+    rgba(220, 120, 90, 0.74) 0%,
+    rgba(200, 95, 68, 0.64) 55%,
+    rgba(180, 75, 52, 0.7) 100%
+  );
+  border-color: rgba(150, 60, 40, 0.32);
 }
 
 .stack-flow__header,
@@ -491,8 +555,8 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.625rem 0.875rem;
-  padding: 0 0 0.5rem;
-  border-bottom: none;
+  padding: 0.65rem 0.875rem 0.5rem;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
 }
 
 .stack-flow__eyebrow {
@@ -549,7 +613,7 @@ body {
   align-items: stretch;
   gap: 0;
   margin: 0;
-  padding: 0;
+  padding: 0.65rem 0.875rem 0.75rem;
   list-style: none;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -913,6 +977,10 @@ body {
 }
 
 @media (max-width: 639px) {
+  .stack-flow__surface {
+    max-width: 100%;
+  }
+
   .stack-flow__step {
     min-width: 6rem;
   }
