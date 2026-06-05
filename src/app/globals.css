@@ -535,11 +535,18 @@ body {
 
 .stack-bar__inner {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.875rem 1.25rem;
+  justify-content: center;
   min-width: 0;
   padding: 0.875rem var(--workspace-banner-pad-x);
+}
+
+.stack-bar__center {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem 1.25rem;
+  max-width: 100%;
 }
 
 .stack-bar__label {
@@ -553,9 +560,10 @@ body {
 
 .stack-bar__track {
   display: flex;
-  flex: 1;
+  flex: 0 1 auto;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
   gap: 0;
   min-width: 0;
   overflow-x: auto;
@@ -588,49 +596,66 @@ body {
   color: #111111;
   white-space: nowrap;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  animation: stack-node-pulse 2.6s ease-in-out infinite;
+  animation: stack-node-pulse 2s ease-in-out infinite;
   animation-delay: var(--node-pulse-delay, 0s);
 }
 
 .stack-bar__node--snowflake {
-  border-color: rgba(45, 90, 138, 0.45);
-  background: linear-gradient(145deg, #ffffff 0%, rgba(45, 90, 138, 0.1) 100%);
-  --node-pulse-color: rgba(45, 90, 138, 0.55);
-  --node-pulse-glow: rgba(45, 90, 138, 0.28);
+  border-color: rgba(45, 90, 138, 0.4);
+  background: linear-gradient(145deg, #ffffff 0%, rgba(45, 90, 138, 0.08) 100%);
+  --node-pulse-color: rgba(45, 90, 138, 0.85);
+  --node-pulse-border-dim: rgba(45, 90, 138, 0.32);
+  --node-pulse-glow: rgba(45, 90, 138, 0.55);
+  --node-pulse-bg: rgba(45, 90, 138, 0.22);
 }
 
 .stack-bar__node--hightouch {
-  border-color: rgba(107, 47, 148, 0.45);
-  background: linear-gradient(145deg, #ffffff 0%, rgba(107, 47, 148, 0.1) 100%);
-  --node-pulse-color: rgba(107, 47, 148, 0.58);
-  --node-pulse-glow: rgba(107, 47, 148, 0.28);
+  border-color: rgba(107, 47, 148, 0.4);
+  background: linear-gradient(145deg, #ffffff 0%, rgba(107, 47, 148, 0.08) 100%);
+  --node-pulse-color: rgba(107, 47, 148, 0.88);
+  --node-pulse-border-dim: rgba(107, 47, 148, 0.32);
+  --node-pulse-glow: rgba(107, 47, 148, 0.55);
+  --node-pulse-bg: rgba(107, 47, 148, 0.22);
 }
 
 .stack-bar__node--braze {
-  border-color: rgba(143, 61, 92, 0.45);
-  background: linear-gradient(145deg, #ffffff 0%, rgba(143, 61, 92, 0.1) 100%);
-  --node-pulse-color: rgba(143, 61, 92, 0.58);
-  --node-pulse-glow: rgba(143, 61, 92, 0.28);
+  border-color: rgba(143, 61, 92, 0.4);
+  background: linear-gradient(145deg, #ffffff 0%, rgba(143, 61, 92, 0.08) 100%);
+  --node-pulse-color: rgba(143, 61, 92, 0.88);
+  --node-pulse-border-dim: rgba(143, 61, 92, 0.32);
+  --node-pulse-glow: rgba(143, 61, 92, 0.55);
+  --node-pulse-bg: rgba(143, 61, 92, 0.22);
 }
 
 .stack-bar__node--pulse {
-  border-color: rgba(99, 102, 241, 0.5);
-  background: linear-gradient(145deg, #ffffff 0%, rgba(99, 102, 241, 0.12) 100%);
-  --node-pulse-color: rgba(99, 102, 241, 0.62);
-  --node-pulse-glow: rgba(99, 102, 241, 0.32);
+  border-color: rgba(99, 102, 241, 0.45);
+  background: linear-gradient(145deg, #ffffff 0%, rgba(99, 102, 241, 0.1) 100%);
+  --node-pulse-color: rgba(99, 102, 241, 0.92);
+  --node-pulse-border-dim: rgba(99, 102, 241, 0.35);
+  --node-pulse-glow: rgba(99, 102, 241, 0.62);
+  --node-pulse-bg: rgba(99, 102, 241, 0.26);
 }
 
 @keyframes stack-node-pulse {
   0%,
   100% {
+    border-color: var(--node-pulse-border-dim, rgba(26, 26, 26, 0.16));
+    background: linear-gradient(145deg, #ffffff 0%, rgba(255, 255, 255, 0.92) 100%);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      0 0 6px 0 var(--node-pulse-glow, transparent);
+      0 0 8px 0 var(--node-pulse-glow, transparent);
   }
   50% {
+    border-color: var(--node-pulse-color, rgba(26, 26, 26, 0.35));
+    background: linear-gradient(
+      145deg,
+      #ffffff 0%,
+      color-mix(in srgb, var(--node-pulse-bg, transparent) 72%, #ffffff) 100%
+    );
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      0 0 18px 2px var(--node-pulse-glow, transparent);
+      0 0 28px 4px var(--node-pulse-glow, transparent),
+      0 0 0 1px var(--node-pulse-color, transparent);
   }
 }
 
@@ -1387,10 +1412,17 @@ body {
     padding: 0.625rem 1rem;
   }
 
+  .stack-bar__center {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
   .stack-bar__track {
     flex-direction: column;
     align-items: stretch;
     gap: 0.35rem;
+    width: 100%;
   }
 
   .stack-bar__segment {
