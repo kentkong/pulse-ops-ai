@@ -9,21 +9,6 @@ export function WorkspaceContextBand() {
   const pathname = usePathname();
   const page = getActiveNavItem(pathname);
 
-  const pragueTime = new Date().toLocaleTimeString("en-GB", {
-    timeZone: "Europe/Prague",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-
-  const pragueDate = new Date().toLocaleDateString("en-GB", {
-    timeZone: "Europe/Prague",
-    weekday: "short",
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-
   return (
     <section className="context-band flex shrink-0 flex-col">
       <div className="context-band__inner">
@@ -105,14 +90,6 @@ export function WorkspaceContextBand() {
             <NavPageMark icon={page.icon} hue={page.hue} size="banner" />
           </div>
         </div>
-
-        <p className="context-band__tagline mt-2 max-w-xl">
-          AI Intelligence Layer — Unified Stack Response
-        </p>
-
-        <p className="context-band__datetime mt-1.5">
-          {pragueDate} · {pragueTime} · Europe/Prague
-        </p>
       </div>
     </section>
   );

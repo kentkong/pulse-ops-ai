@@ -227,13 +227,51 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 2.75rem;
-  padding: 0 1rem;
+  min-height: 3.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.command-bar__context {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 28rem;
+}
+
+.command-bar__tagline {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: #111111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.command-bar__datetime {
+  margin-top: 0.125rem;
+  font-size: 10px;
+  font-weight: 600;
+  color: #666666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 640px) {
+  .command-bar__tagline {
+    font-size: 0.875rem;
+  }
 }
 
 @media (min-width: 1024px) {
   .command-bar__main {
-    padding: 0 1.25rem;
+    min-height: 3.5rem;
+    padding: 0.625rem 1.25rem;
+  }
+
+  .command-bar__tagline {
+    font-size: 0.9375rem;
   }
 }
 
@@ -260,14 +298,14 @@ body {
   min-height: 0;
   --workspace-banner-pad-y: 1.125rem;
   --workspace-banner-pad-x: 1.5rem;
-  --workspace-header-height: 9.5rem;
+  --workspace-header-height: 6.75rem;
 }
 
 @media (min-width: 1024px) {
   .workspace-grid {
     --workspace-banner-pad-y: 1.375rem;
     --workspace-banner-pad-x: 2rem;
-    --workspace-header-height: 10.25rem;
+    --workspace-header-height: 7.5rem;
   }
 }
 
