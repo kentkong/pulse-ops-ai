@@ -5,16 +5,13 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { isNavActive, workspaceNav } from "@/lib/nav-config";
 
-function NavTabLinks({ className, listClassName, tabClassName }: {
-  className?: string;
-  listClassName?: string;
-  tabClassName?: string;
-}) {
+/** Horizontal nav tabs along the bottom edge of the command bar */
+export function CommandBarNav() {
   const pathname = usePathname();
 
   return (
-    <nav className={className} aria-label="Navigation">
-      <ul className={listClassName}>
+    <nav className="command-bar__nav" aria-label="Navigation">
+      <ul className="command-bar__nav-items">
         {workspaceNav.map((item) => {
           const Icon = item.icon;
           const active = isNavActive(pathname, item.href);
@@ -25,8 +22,7 @@ function NavTabLinks({ className, listClassName, tabClassName }: {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "nav-tab group relative flex items-center gap-1.5 transition-all",
-                  tabClassName,
+                  "nav-tab command-bar__nav-tab group relative flex items-center gap-1.5 transition-all",
                   `nav-tab--${item.hue}`,
                   active && "nav-tab--active"
                 )}
@@ -44,29 +40,4 @@ function NavTabLinks({ className, listClassName, tabClassName }: {
       </ul>
     </nav>
   );
-}
-
-/** Horizontal nav tabs along the bottom edge of the command bar */
-export function CommandBarNav() {
-  return (
-    <NavTabLinks
-      className="command-bar__nav"
-      listClassName="command-bar__nav-items"
-      tabClassName="command-bar__nav-tab"
-    />
-  );
-}
-
-/** @deprecated Nav moved to command bar — kept for compatibility */
-export function LeftNavTabs() {
-  return <CommandBarNav />;
-}
-
-export function LeftNavRail() {
-  return null;
-}
-
-/** @deprecated Use CommandBarNav */
-export function LeftNav() {
-  return <CommandBarNav />;
 }
