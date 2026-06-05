@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { getActiveNavItem } from "@/lib/nav-config";
 import { navHueClass } from "@/lib/nav-hue";
 import { BannerNavTabs } from "@/components/layout/left-nav";
-import { StackFlowPanel } from "@/components/layout/stack-flow-panel";
 
 export function WorkspaceContextBand() {
   const pathname = usePathname();
@@ -89,7 +88,6 @@ export function WorkspaceContextBand() {
         </p>
       </div>
 
-      <StackFlowPanel hue={page.hue} />
       <BannerNavTabs />
     </section>
   );
