@@ -15,14 +15,13 @@ type NavPageMarkProps = {
   className?: string;
 };
 
-/** Page icon at banner scale — hue only, no background (banner adds frosted tile) */
+/** Page icon at banner scale — hue only, no background */
 export function NavPageMark({ icon: Icon, hue, size = "md", className }: NavPageMarkProps) {
   return (
     <span
       className={cn(
         "nav-page-mark inline-flex shrink-0 items-center justify-center",
         markSizes[size],
-        size === "banner" && "nav-page-mark--banner-tile",
         `nav-page-mark--${hue}`,
         className
       )}

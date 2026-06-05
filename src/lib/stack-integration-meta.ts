@@ -19,6 +19,6 @@ export function getStackIntegrationMark(name: string): StackIntegrationMarkConfi
 export function getStackIntegrationBrandClass(name: string): string {
   const config = stackIntegrationMarks[name];
   if (!config) return "";
-  if (config.kind === "pulse") return "context-band__stack-item--pulse";
-  return `context-band__stack-item--${config.hue}`;
+  if (config.kind === "pulse") return "stack-bar__node--pulse";
+  return `stack-bar__node--${config.hue}`;
 }
