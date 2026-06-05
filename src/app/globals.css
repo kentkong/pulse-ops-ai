@@ -1166,7 +1166,7 @@ body {
   min-height: 100%;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: var(--workspace-banner-pad-y) var(--workspace-banner-pad-x);
 }
 
