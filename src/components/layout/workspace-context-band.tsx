@@ -89,7 +89,7 @@ export function WorkspaceContextBand() {
         </p>
       </div>
 
-      <StackFlowPanel hue={page.hue} />
+      <StackFlowPanel />
       <BannerNavTabs />
     </section>
   );

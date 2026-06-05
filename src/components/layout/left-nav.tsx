@@ -20,10 +20,18 @@ export function BannerNavTabs() {
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={cn("banner-nav-btn", active && "banner-nav-btn--active")}
+                className={cn(
+                  "nav-tab group relative flex h-full items-center justify-center gap-2 rounded-lg px-3 py-2 transition-all duration-200",
+                  `nav-tab--${item.hue}`,
+                  active && "nav-tab--active"
+                )}
               >
-                <Icon className="banner-nav-btn__icon" strokeWidth={1.85} />
-                <span className="banner-nav-btn__label">{item.name}</span>
+                <span className="nav-tab__bg" aria-hidden />
+                <span className="nav-tab__stripe" aria-hidden />
+                <span className="nav-tab__icon-wrap">
+                  <Icon className="nav-tab__icon h-[15px] w-[15px] shrink-0" strokeWidth={1.85} />
+                </span>
+                <span className="nav-tab__label min-w-0">{item.name}</span>
               </Link>
             </li>
           );

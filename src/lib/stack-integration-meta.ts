@@ -15,11 +15,3 @@ export const stackIntegrationMarks: Record<string, StackIntegrationMarkConfig> =
 export function getStackIntegrationMark(name: string): StackIntegrationMarkConfig | undefined {
   return stackIntegrationMarks[name];
 }
-
-/** CSS modifier for stack-flow node brand tint */
-export function getStackIntegrationBrandClass(name: string): string {
-  const config = stackIntegrationMarks[name];
-  if (!config) return "";
-  if (config.kind === "pulse") return "stack-flow__node-box--pulse";
-  return `stack-flow__node-box--${config.hue}`;
-}
