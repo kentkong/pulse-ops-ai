@@ -38,6 +38,7 @@ export function WorkspaceStackBar() {
                   getStackIntegrationBrandClass(source.name),
                   source.status === "connected" && "stack-bar__node--healthy"
                 )}
+                style={{ ["--node-pulse-delay" as string]: `${index * 0.35}s` }}
                 title={`${source.role} · ${source.latency}`}
               >
                 <StackIntegrationMark name={source.name} />
