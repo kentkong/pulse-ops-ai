@@ -109,7 +109,7 @@ export function WorkspaceContextBand() {
             <h2 className="text-2xl font-bold tracking-tighter text-[#1a1a1a] sm:text-3xl lg:text-4xl">
               {page.name}
             </h2>
-            <NavPageMark icon={page.icon} hue={page.hue} size="lg" />
+            <NavPageMark icon={page.icon} hue={page.hue} size="banner" />
           </div>
         </div>
 
