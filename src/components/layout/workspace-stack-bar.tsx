@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronRight } from "lucide-react";
 import { StackIntegrationMark } from "@/components/ui/stack-integration-mark";
 import { cn } from "@/lib/utils";
 import { stackIntegrations } from "@/lib/mock-data";
@@ -10,21 +11,12 @@ function StackBarConnector({ index }: { index: number }) {
     <span
       className="stack-bar__connector"
       aria-hidden
-      style={{ ["--connector-delay" as string]: `${index * 0.35}s` }}
+      style={{ ["--connector-delay" as string]: `${index * 0.45}s` }}
     >
-      <svg className="stack-bar__connector-svg" width="28" height="10" viewBox="0 0 28 10">
-        <line
-          className="stack-bar__connector-line"
-          x1="0"
-          y1="5"
-          x2="22"
-          y2="5"
-          stroke="currentColor"
-          strokeWidth="1.25"
-          strokeDasharray="4 4"
-        />
-        <polygon className="stack-bar__connector-head" points="22,2 28,5 22,8" fill="currentColor" />
-      </svg>
+      <span className="stack-bar__connector-rail">
+        <span className="stack-bar__connector-beam" />
+      </span>
+      <ChevronRight className="stack-bar__connector-chevron" strokeWidth={2.5} />
     </span>
   );
 }
