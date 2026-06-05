@@ -36,9 +36,10 @@ export function StackFlowPanel() {
     <div className="stack-flow" aria-label="Connected technology stack">
       <div className="stack-flow__surface">
         <div className="stack-flow__header">
-          <p className="stack-flow__label">
-            Connected Stack · Your operational data pipeline
-          </p>
+          <div className="stack-flow__heading">
+            <span className="stack-flow__eyebrow">Connected Stack</span>
+            <p className="stack-flow__title">Your operational data pipeline</p>
+          </div>
           <div className={cn("stack-flow__health", allHealthy && "stack-flow__health--ok")}>
             <span className="stack-flow__health-dot" aria-hidden />
             <span>
