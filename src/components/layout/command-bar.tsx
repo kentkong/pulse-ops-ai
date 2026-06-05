@@ -1,23 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { Search, Sparkles } from "lucide-react";
-import { PulseOpsMark } from "@/components/ui/pulse-ops-mark";
 import { StackIntegrationMark } from "@/components/ui/stack-integration-mark";
 import { stackIntegrations } from "@/lib/mock-data";
 
 export function CommandBar() {
   return (
     <header className="command-bar">
-      <div className="command-bar__brand">
-        <Link href="/" className="flex shrink-0 items-center gap-2">
-          <PulseOpsMark size="sm" />
-          <span className="hidden text-xs font-semibold tracking-wide text-[#1a1a1a] sm:inline">
-            Pulse-Ops <span className="text-[#f1c40f]">AI</span>
-          </span>
-        </Link>
-      </div>
-
       <div className="command-bar__main">
         <div className="flex min-w-0 items-center gap-6">
           <div className="hidden items-center gap-4 text-[11px] text-[#666] md:flex">
