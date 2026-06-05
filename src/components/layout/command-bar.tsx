@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, Sparkles } from "lucide-react";
+import { CommandBarNav } from "@/components/layout/left-nav";
 import { StackIntegrationMark } from "@/components/ui/stack-integration-mark";
 import { stackIntegrations } from "@/lib/mock-data";
 
@@ -74,6 +75,7 @@ export function CommandBar() {
           </div>
         </div>
       </div>
+      <CommandBarNav />
     </header>
   );
 }

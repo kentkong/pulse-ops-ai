@@ -5,15 +5,16 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { isNavActive, workspaceNav } from "@/lib/nav-config";
 
-export function LeftNavTabs() {
+function NavTabLinks({ className, listClassName, tabClassName }: {
+  className?: string;
+  listClassName?: string;
+  tabClassName?: string;
+}) {
   const pathname = usePathname();
 
   return (
-    <nav
-      className="left-nav left-nav--banner relative z-[1] flex h-full w-full flex-col justify-start"
-      aria-label="Navigation"
-    >
-      <ul className="left-nav__items flex h-full flex-col justify-start gap-0.5">
+    <nav className={className} aria-label="Navigation">
+      <ul className={listClassName}>
         {workspaceNav.map((item) => {
           const Icon = item.icon;
           const active = isNavActive(pathname, item.href);
@@ -24,7 +25,8 @@ export function LeftNavTabs() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "nav-tab group relative flex w-full items-center gap-1.5 rounded-md px-2 py-1 transition-all",
+                  "nav-tab group relative flex items-center gap-1.5 transition-all",
+                  tabClassName,
                   `nav-tab--${item.hue}`,
                   active && "nav-tab--active"
                 )}
@@ -44,11 +46,27 @@ export function LeftNavTabs() {
   );
 }
 
-export function LeftNavRail() {
-  return <div className="left-nav-rail relative z-[1] min-h-0" aria-hidden />;
+/** Horizontal nav tabs along the bottom edge of the command bar */
+export function CommandBarNav() {
+  return (
+    <NavTabLinks
+      className="command-bar__nav"
+      listClassName="command-bar__nav-items"
+      tabClassName="command-bar__nav-tab"
+    />
+  );
 }
 
-/** @deprecated Use LeftNavTabs + LeftNavRail */
+/** @deprecated Nav moved to command bar — kept for compatibility */
+export function LeftNavTabs() {
+  return <CommandBarNav />;
+}
+
+export function LeftNavRail() {
+  return null;
+}
+
+/** @deprecated Use CommandBarNav */
 export function LeftNav() {
-  return <LeftNavTabs />;
+  return <CommandBarNav />;
 }
