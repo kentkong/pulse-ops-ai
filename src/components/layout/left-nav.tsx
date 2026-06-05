@@ -17,7 +17,14 @@ export function CommandBarNav() {
           const active = isNavActive(pathname, item.href);
 
           return (
-            <li key={item.name} className="shrink-0">
+            <li
+              key={item.name}
+              className={cn(
+                "command-bar__nav-item shrink-0",
+                `command-bar__nav-item--${item.hue}`,
+                active && "command-bar__nav-item--active"
+              )}
+            >
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
@@ -28,12 +35,12 @@ export function CommandBarNav() {
                 )}
               >
                 <span className="nav-tab__bg" aria-hidden />
-                <span className="nav-tab__stripe" aria-hidden />
                 <Icon className="nav-tab__icon h-[14px] w-[14px] shrink-0" strokeWidth={1.75} />
                 <span className="nav-tab__label min-w-0 text-[10px] font-medium leading-tight">
                   {item.name}
                 </span>
               </Link>
+              <span className="command-bar__nav-underline" aria-hidden />
             </li>
           );
         })}
