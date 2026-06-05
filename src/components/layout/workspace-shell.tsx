@@ -13,8 +13,10 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
         <LeftNavTabs />
         <WorkspaceContextBand />
         <LeftNavRail />
-        <WorkspaceStackBar />
-        <main className="workspace-main">{children}</main>
+        <main className="workspace-main">
+          <WorkspaceStackBar />
+          {children}
+        </main>
       </div>
     </div>
   );

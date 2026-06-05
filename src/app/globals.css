@@ -255,19 +255,19 @@ body {
   position: relative;
   display: grid;
   grid-template-columns: var(--workspace-sidebar-width) minmax(0, 1fr);
-  grid-template-rows: var(--workspace-header-height) auto minmax(0, 1fr);
+  grid-template-rows: var(--workspace-header-height) minmax(0, 1fr);
   flex: 1;
   min-height: 0;
   --workspace-banner-pad-y: 1.125rem;
   --workspace-banner-pad-x: 1.5rem;
-  --workspace-header-height: 10.5rem;
+  --workspace-header-height: 9.5rem;
 }
 
 @media (min-width: 1024px) {
   .workspace-grid {
     --workspace-banner-pad-y: 1.375rem;
     --workspace-banner-pad-x: 2rem;
-    --workspace-header-height: 11.5rem;
+    --workspace-header-height: 10.25rem;
   }
 }
 
@@ -400,20 +400,11 @@ body {
 
 .left-nav-rail {
   grid-column: 1;
-  grid-row: 2 / 4;
+  grid-row: 2;
   position: relative;
   z-index: 1;
   min-height: 0;
   background: transparent;
-}
-
-.workspace-grid > .stack-bar {
-  grid-column: 2;
-  grid-row: 2;
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  flex-shrink: 0;
 }
 
 .workspace-grid > .context-band {
@@ -439,13 +430,20 @@ body {
 
 .workspace-main {
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 2;
   position: relative;
   z-index: 1;
   display: flex;
   min-height: 0;
   flex-direction: column;
   overflow-y: auto;
+  background: #f6f6f8;
+}
+
+.workspace-main > .stack-bar {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .context-band__bg {
@@ -501,9 +499,10 @@ body {
 }
 
 .stack-bar {
-  background: linear-gradient(180deg, #f4f4f6 0%, #fafafa 100%);
-  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  background: #ffffff;
+  border-top: 1px solid rgba(26, 26, 26, 0.1);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+  box-shadow: 0 1px 3px rgba(26, 26, 26, 0.06);
 }
 
 .stack-bar__inner {
@@ -512,14 +511,7 @@ body {
   align-items: center;
   gap: 0.625rem 0.75rem;
   min-width: 0;
-  padding: 0.625rem var(--workspace-banner-pad-x);
-}
-
-@media (min-width: 1024px) {
-  .stack-bar__inner {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-  }
+  padding: 0.75rem var(--workspace-banner-pad-x);
 }
 
 .context-band__meta-stack-row {
@@ -1189,7 +1181,7 @@ body {
 
   .workspace-grid {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto auto minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
     --workspace-header-height: auto;
   }
 
@@ -1242,14 +1234,9 @@ body {
     grid-row: 2;
   }
 
-  .workspace-grid > .stack-bar {
-    grid-column: 1;
-    grid-row: 3;
-  }
-
   .workspace-main {
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 3;
   }
 
   .context-band__inner {
