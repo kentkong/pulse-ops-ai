@@ -1,75 +1,69 @@
-# PulseOps AI
+# Pulse-Ops AI
 
-AI-native lifecycle operations and orchestration platform designed to unify customer intelligence, operational visibility, and adaptive engagement workflows into a centralized operational command center.
+AI-native lifecycle operations and orchestration platform — a portfolio demo showing how operational intelligence unifies Snowflake, Hightouch, Braze, and AI-driven signals into one command center.
+
+**Live demo:** [https://kentkong.github.io/pulse-ops-ai/](https://kentkong.github.io/pulse-ops-ai/)
 
 ## Overview
 
-PulseOps AI is a conceptual portfolio/demo application that demonstrates how AI, customer data platforms, orchestration layers, and engagement systems work together to create adaptive, scalable customer lifecycle operations.
+Pulse-Ops AI demonstrates how lifecycle ops teams monitor account health, surface AI-driven risks, and orchestrate next actions across a modern martech stack. All data is mock — built for storytelling and portfolio walkthroughs.
 
 ### Stack Architecture
 
 | Layer | Tool | Role |
 |-------|------|------|
 | Data | Snowflake | Customer & event data warehouse |
-| Orchestration | Hightouch | Reverse ETL & audience activation |
-| Engagement | Braze | Omnichannel lifecycle messaging |
-| Intelligence | PulseOps AI | Operational visibility & AI insights |
+| Activation | Hightouch | Reverse ETL & audience sync |
+| Engagement | Braze | Lifecycle messaging & journeys |
+| Intelligence | Pulse-Ops AI | Health monitoring, AI signals, workflow orchestration |
 
-## Phase 1 MVP Features
+## Workspace Pages
 
-- **Executive Operations Dashboard** — KPIs, SLA monitoring, engagement trends
-- **Customer Lifecycle Intelligence** — Stage tracking, health scoring, onboarding funnel
-- **AI Insights Engine** — Generated operational summaries and recommendations
-- **Workflow Orchestration Center** — Lifecycle automation flow management
-- **Real-Time Event Stream** — Simulated customer activity feed
-- **Next-Best-Action Engine** — AI-prioritized operational recommendations
+| Tab | Route | Purpose |
+|-----|-------|---------|
+| Command | `/` | Operations dashboard, kanban, AI rail, demo path |
+| Lifecycle | `/lifecycle` | Journey map, stage cards, health heatmap |
+| Workflows | `/workflows` | Orchestration pipeline & workflow cards |
+| Signals | `/insights` | AI operational signals & recommendations |
+| Events | `/events` | Real-time event stream |
+| Stack | `/architecture` | Warehouse-native architecture diagram |
 
 ## Tech Stack
 
 - **Frontend:** Next.js 15, React 19, Tailwind CSS 4
-- **UI:** shadcn/ui-inspired components, Lucide icons
-- **Charts:** Recharts
-- **Backend (future):** Supabase
-- **AI (future):** OpenAI API
-- **Deployment:** Vercel
+- **UI:** Custom component system, Lucide icons, Recharts
+- **Deployment:** GitHub Pages (static export)
 
 ## Getting Started
 
 ```bash
 npm install
-npm run dev
+npm run dev -- -p 3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+Open [http://localhost:3000/pulse-ops-ai/](http://localhost:3000/pulse-ops-ai/) (basePath is `/pulse-ops-ai`).
 
 ## Project Structure
 
 ```
 src/
 ├── app/                  # Next.js App Router pages
-│   ├── page.tsx          # Operations Dashboard
-│   ├── lifecycle/        # Customer Lifecycle Intelligence
-│   ├── insights/         # AI Insights Engine
-│   ├── workflows/        # Workflow Orchestration
-│   └── events/           # Real-Time Event Stream
 ├── components/
-│   ├── ui/               # Base UI components
-│   ├── dashboard/        # Dashboard widgets & charts
-│   ├── insights/         # AI insight components
-│   ├── lifecycle/        # Customer lifecycle views
-│   ├── workflows/        # Workflow management
-│   ├── events/           # Event stream components
-│   └── actions/          # Next-best-action panel
+│   ├── dashboard/        # Command center widgets
+│   ├── layout/           # Workspace shell, nav, orchestration strip
+│   ├── lifecycle/        # Journey map, customer table
+│   ├── insights/         # AI signal cards
+│   ├── workflows/        # Orchestration diagrams
+│   └── architecture/     # Stack flow diagrams
 ├── lib/
-│   ├── mock-data.ts      # Generated customer & operational data
-│   └── utils.ts          # Utility functions
+│   ├── mock-data.ts      # Demo customers, events, workflows
+│   └── demo-now.ts       # Fixed clock for stable static export
 └── types/
-    └── index.ts          # TypeScript type definitions
 ```
 
 ## Design Direction
 
-Modern SaaS aesthetic inspired by Linear, Vercel, Retool, and Stripe Dashboard — dark theme, clean typography, operational intelligence focus.
+Light operational workspace — charcoal texture, yellow accent, hue-coded nav tabs, sticky hero with scroll-away stack strip. Inspired by enterprise command centers and modern SaaS dashboards.
 
 ## License
 

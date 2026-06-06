@@ -21,10 +21,10 @@ export function CriticalSignalBanner() {
         </div>
       </div>
       <Link
-        href="/insights"
+        href="/lifecycle"
         className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-[#1a1a1a] transition-colors hover:text-[#e74c3c]"
       >
-        View signal
+        View at-risk accounts
         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
       </Link>
     </div>

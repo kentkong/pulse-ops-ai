@@ -1,5 +1,6 @@
 import { AppShell } from "@/components/layout/sidebar";
 import { CriticalSignalBanner } from "@/components/dashboard/critical-signal-banner";
+import { DemoPathStrip } from "@/components/dashboard/demo-path-strip";
 import { GlanceStatRow } from "@/components/dashboard/glance-stat-row";
 import { LifecycleOpsBoard } from "@/components/dashboard/lifecycle-ops-board";
 import { AIIntelligenceBand } from "@/components/dashboard/ai-intelligence-rail";
@@ -18,6 +19,7 @@ export default function OperationsDashboard() {
   return (
     <AppShell>
       <CriticalSignalBanner />
+      <DemoPathStrip />
       <GlanceStatRow stats={todayAtAGlance} />
       <AIIntelligenceBand
         accounts={priorityAccounts}
