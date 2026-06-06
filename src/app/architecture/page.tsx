@@ -54,7 +54,7 @@ export default function ArchitecturePage() {
         description="Pulse-Ops AI sits above the stack — unifying warehouse data, reverse ETL activation, and lifecycle engagement into one operational intelligence layer."
         pills={[{ label: "4 integrations" }, { label: "All operational", accent: true }]}
       />
-      <div className="flex-1 overflow-y-auto space-y-6 p-8">
+      <div className="space-y-6 p-8">
         <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
           Warehouse-native lifecycle ops unify customer data in Snowflake, activate segments through
           Hightouch, orchestrate engagement in Braze, and layer Pulse-Ops AI intelligence on top —

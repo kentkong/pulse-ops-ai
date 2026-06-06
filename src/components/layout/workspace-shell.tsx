@@ -7,13 +7,15 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="workspace-shell">
       <CommandBar />
-      <div className="workspace-grid">
-        <WorkspaceHeaderBg />
-        <section className="context-band flex shrink-0 flex-col">
-          <div className="context-band__inner">
-            <WorkspaceContextBand />
-          </div>
-        </section>
+      <div className="workspace-scroll">
+        <div className="workspace-hero">
+          <WorkspaceHeaderBg />
+          <section className="context-band flex shrink-0 flex-col">
+            <div className="context-band__inner">
+              <WorkspaceContextBand />
+            </div>
+          </section>
+        </div>
         <WorkspaceContextStrip />
         <main className="workspace-main">{children}</main>
       </div>

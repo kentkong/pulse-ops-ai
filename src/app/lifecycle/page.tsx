@@ -23,7 +23,7 @@ export default function LifecyclePage() {
           { label: `avg health ${avgHealth}` },
         ]}
       />
-      <div className="flex-1 overflow-y-auto space-y-6 p-8">
+      <div className="space-y-6 p-8">
         <LifecycleJourneyMap customers={customers} />
 
         <div className="grid gap-6 lg:grid-cols-3">

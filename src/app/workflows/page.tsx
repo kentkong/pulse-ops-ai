@@ -26,7 +26,7 @@ export default function WorkflowsPage() {
           { label: `${avgCompletion}% avg completion` },
         ]}
       />
-      <div className="flex-1 overflow-y-auto space-y-6 p-8">
+      <div className="space-y-6 p-8">
         {pausedWorkflow && (
           <Card className="glass-card border-warning/25 bg-warning/5">
             <CardContent className="flex flex-wrap items-start justify-between gap-4 p-5">

@@ -74,7 +74,7 @@ export default function EventsPage() {
         ]}
         meta={`${events.length} events in buffer`}
       />
-      <div className="flex-1 overflow-y-auto space-y-6 p-8">
+      <div className="space-y-6 p-8">
         <div className="grid gap-4 md:grid-cols-2">
           <Card className="glass-card">
             <CardContent className="flex items-center gap-3 p-5">

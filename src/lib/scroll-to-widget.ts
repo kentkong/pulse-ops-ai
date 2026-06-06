@@ -10,7 +10,9 @@ export function scrollToWidget(
   const element = document.getElementById(targetId);
   if (!element) return false;
 
-  const main = document.querySelector<HTMLElement>(".workspace-main");
+  const main =
+    document.querySelector<HTMLElement>(".workspace-scroll") ??
+    document.querySelector<HTMLElement>(".workspace-main");
   const block = options.block ?? "nearest";
   const inline = options.inline ?? "nearest";
 

@@ -32,7 +32,7 @@ export default function InsightsPage() {
           { label: "Last analysis 2m ago" },
         ]}
       />
-      <div className="flex-1 overflow-y-auto space-y-6 p-8">
+      <div className="space-y-6 p-8">
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <AIStreamSummary />

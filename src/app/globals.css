@@ -582,6 +582,38 @@ body {
   --workspace-header-height: 9.5rem;
 }
 
+/* Single scroll region — stack strip scrolls under sticky hero */
+.workspace-scroll {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  --workspace-banner-pad-y: 1.125rem;
+  --workspace-banner-pad-x: 1.5rem;
+  --workspace-header-height: 9.5rem;
+}
+
+.workspace-hero {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: var(--workspace-header-height);
+}
+
+@media (min-width: 1024px) {
+  .workspace-scroll {
+    --workspace-banner-pad-y: 1.375rem;
+    --workspace-banner-pad-x: 2rem;
+    --workspace-header-height: 11.25rem;
+  }
+
+  .workspace-hero {
+    min-height: var(--workspace-header-height);
+  }
+}
+
 @media (min-width: 1024px) {
   .workspace-grid {
     --workspace-banner-pad-y: 1.375rem;
@@ -595,7 +627,15 @@ body {
   display: none;
 }
 
-/* Unified header surface — one hue layer behind tabs + banner */
+/* Unified header surface — sticky hero background */
+.workspace-hero .workspace-header-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  min-height: 0;
+  pointer-events: none;
+}
+
 .workspace-header-bg {
   grid-column: 1 / -1;
   grid-row: 1;
@@ -703,7 +743,8 @@ body {
   background: transparent;
 }
 
-.workspace-grid > .context-band {
+.workspace-grid > .context-band,
+.workspace-hero > .context-band {
   grid-column: 1;
   grid-row: 1;
   position: relative;
@@ -719,7 +760,8 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .workspace-grid > .context-band {
+  .workspace-grid > .context-band,
+  .workspace-hero > .context-band {
     min-height: 0;
   }
 }
@@ -732,16 +774,27 @@ body {
   display: flex;
   min-height: 0;
   flex-direction: column;
-  overflow-y: auto;
   background: #f6f6f8;
+}
+
+.workspace-scroll .workspace-main {
+  grid-column: unset;
+  grid-row: unset;
+  flex: 1 0 auto;
+  min-height: auto;
 }
 
 .workspace-context-strip {
   grid-column: 1;
   grid-row: 2;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   flex-shrink: 0;
+}
+
+.workspace-scroll .workspace-context-strip {
+  grid-column: unset;
+  grid-row: unset;
 }
 
 .orchestration-strip {
@@ -2033,6 +2086,10 @@ body {
   .workspace-grid {
     grid-template-rows: auto auto minmax(0, 1fr);
     --workspace-header-height: auto;
+  }
+
+  .workspace-hero {
+    min-height: auto;
   }
 
   .context-band__inner {
