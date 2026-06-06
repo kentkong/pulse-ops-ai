@@ -1,12 +1,13 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { DEMO_NOW } from "@/lib/demo-now";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatRelativeTime(date: Date): string {
-  const now = new Date();
+export function formatRelativeTime(date: Date, referenceNow: Date = DEMO_NOW): string {
+  const now = referenceNow;
   const diffMs = now.getTime() - date.getTime();
   const diffMins = Math.floor(diffMs / 60000);
   const diffHours = Math.floor(diffMs / 3600000);

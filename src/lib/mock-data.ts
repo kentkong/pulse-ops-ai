@@ -14,7 +14,9 @@ import type {
   Workflow,
 } from "@/types";
 
-const now = new Date();
+import { DEMO_NOW } from "@/lib/demo-now";
+
+const now = DEMO_NOW;
 
 function daysAgo(days: number): Date {
   const d = new Date(now);
