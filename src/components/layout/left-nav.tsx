@@ -27,9 +27,10 @@ export function CommandBarNav() {
             >
               <Link
                 href={item.href}
+                title={item.name}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "nav-tab command-bar__nav-tab group relative flex items-center gap-1.5 transition-all",
+                  "nav-tab command-bar__nav-tab group relative z-10 flex items-center gap-1.5 transition-all",
                   `nav-tab--${item.hue}`,
                   active && "nav-tab--active"
                 )}

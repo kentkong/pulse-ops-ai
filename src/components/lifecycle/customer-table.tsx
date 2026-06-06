@@ -62,16 +62,16 @@ export function CustomerTable({ customers }: { customers: Customer[] }) {
                       <p className="text-xs text-muted-foreground">{customer.name}</p>
                     </div>
                   </td>
-                  <td className="py-3 pr-4">
-                    <Badge variant={stageVariant[customer.stage]}>
+                  <td className="py-3 pr-4 align-middle">
+                    <Badge variant={stageVariant[customer.stage]} className="whitespace-nowrap">
                       {stageLabels[customer.stage]}
                     </Badge>
                   </td>
-                  <td className="py-3 pr-4">
+                  <td className="py-3 pr-4 align-middle">
                     <div className="w-24 space-y-1">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium">{customer.healthScore}</span>
-                        <Badge variant={healthVariant[customer.healthStatus]} className="text-[9px]">
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="text-xs font-medium tabular-nums">{customer.healthScore}</span>
+                        <Badge variant={healthVariant[customer.healthStatus]} className="shrink-0 text-[9px]">
                           {customer.healthStatus}
                         </Badge>
                       </div>
@@ -102,11 +102,19 @@ export function CustomerTable({ customers }: { customers: Customer[] }) {
   );
 }
 
+function healthTone(score: number) {
+  return score >= 70 ? "text-success" : score >= 50 ? "text-warning" : "text-destructive";
+}
+
+function healthBarTone(score: number) {
+  return score >= 70 ? "bg-success" : score >= 50 ? "bg-warning" : "bg-destructive";
+}
+
 export function LifecycleStageCards({ customers }: { customers: Customer[] }) {
   const stages: LifecycleStage[] = ["onboarding", "activation", "adoption", "expansion", "renewal", "at_risk"];
 
   return (
-    <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+    <div className="grid grid-cols-2 items-stretch gap-3 md:grid-cols-3 lg:grid-cols-6">
       {stages.map((stage) => {
         const stageCustomers = customers.filter((c) => c.stage === stage);
         const avgHealth =
@@ -115,13 +123,39 @@ export function LifecycleStageCards({ customers }: { customers: Customer[] }) {
             : 0;
 
         return (
-          <Card key={stage} className="glass-card transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
-            <CardContent className="p-4">
-              <Badge variant={stageVariant[stage]} className="mb-2">
-                {stageLabels[stage]}
-              </Badge>
-              <p className="text-2xl font-semibold">{stageCustomers.length}</p>
-              <p className="mt-1 text-xs text-muted-foreground">Avg health: {avgHealth}</p>
+          <Card
+            key={stage}
+            className="glass-card flex h-full min-w-0 flex-col transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+          >
+            <CardContent className="flex flex-1 flex-col p-4">
+              <div className="min-h-[1.75rem]">
+                <Badge
+                  variant={stageVariant[stage]}
+                  className="max-w-full whitespace-normal text-center text-[10px] leading-tight"
+                >
+                  {stageLabels[stage]}
+                </Badge>
+              </div>
+
+              <div className="mt-3">
+                <p className="text-2xl font-semibold leading-none tabular-nums">{stageCustomers.length}</p>
+                <p className="mt-1 text-[10px] text-muted-foreground">accounts</p>
+              </div>
+
+              <div className="mt-auto space-y-1.5 border-t border-border/50 pt-3">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="shrink-0 text-[10px] text-muted-foreground">Avg health</span>
+                  <span className={cn("text-xs font-semibold tabular-nums", healthTone(avgHealth))}>
+                    {avgHealth}
+                  </span>
+                </div>
+                <div className="h-1 overflow-hidden rounded-full bg-secondary">
+                  <div
+                    className={cn("h-full rounded-full transition-all", healthBarTone(avgHealth))}
+                    style={{ width: `${avgHealth}%` }}
+                  />
+                </div>
+              </div>
             </CardContent>
           </Card>
         );

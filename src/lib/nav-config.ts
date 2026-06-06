@@ -17,12 +17,12 @@ export type NavItem = {
 };
 
 export const workspaceNav: NavItem[] = [
-  { name: "Operations", href: "/", icon: LayoutDashboard, hue: navItemHues["/"] },
+  { name: "Command", href: "/", icon: LayoutDashboard, hue: navItemHues["/"] },
   { name: "Lifecycle", href: "/lifecycle", icon: Users, hue: navItemHues["/lifecycle"] },
   { name: "Workflows", href: "/workflows", icon: GitBranch, hue: navItemHues["/workflows"] },
-  { name: "AI Signals", href: "/insights", icon: Brain, hue: navItemHues["/insights"] },
+  { name: "Signals", href: "/insights", icon: Brain, hue: navItemHues["/insights"] },
   { name: "Events", href: "/events", icon: Radio, hue: navItemHues["/events"] },
-  { name: "Architecture", href: "/architecture", icon: Layers, hue: navItemHues["/architecture"] },
+  { name: "Stack", href: "/architecture", icon: Layers, hue: navItemHues["/architecture"] },
 ];
 
 export function getActiveNavItem(pathname: string): NavItem {

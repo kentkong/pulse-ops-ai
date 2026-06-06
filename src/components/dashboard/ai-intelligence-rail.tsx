@@ -1,10 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { cn, formatCurrency } from "@/lib/utils";
 import type { AIInsight, NextBestAction, PriorityAccount } from "@/types";
-import { TextureBg } from "@/components/ui/texture-bg";
-import { ArrowRight, Sparkles } from "lucide-react";
 
 function matchAction(account: PriorityAccount, actions: NextBestAction[]) {
   return actions.find(
@@ -42,26 +39,6 @@ export function AIIntelligenceBand({
 
   return (
     <section id="section-actions" className="ai-intelligence-band shrink-0">
-      <div className="ai-rail-header relative overflow-hidden">
-        <TextureBg className="ai-rail-header__bg" />
-        <div className="ai-rail-header__inner flex flex-wrap items-center justify-between gap-3 px-6 py-2.5 lg:px-8">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-3.5 w-3.5 text-[#f1c40f]" />
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/85">
-              AI Intelligence
-            </p>
-            <span className="section-pill section-pill--accent">Live analysis</span>
-          </div>
-          <Link
-            href="/insights"
-            className="flex items-center gap-1 text-[10px] font-semibold text-white/70 transition-colors hover:text-white"
-          >
-            View all signals
-            <ArrowRight className="h-3 w-3" />
-          </Link>
-        </div>
-      </div>
-
       <div className="ai-intelligence-band__grid grid grid-cols-1 divide-y divide-[#e8e8e8] border-b border-[#e8e8e8] bg-white lg:grid-cols-12 lg:divide-x lg:divide-y-0">
         {criticalInsight && (
           <div className="ai-intelligence-band__panel px-5 py-4 lg:col-span-3">

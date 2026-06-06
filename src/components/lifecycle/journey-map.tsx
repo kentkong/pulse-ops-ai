@@ -29,9 +29,12 @@ export function LifecycleJourneyMap({ customers }: { customers: Customer[] }) {
         <p className="text-xs text-muted-foreground">
           Customer progression across operational stages with health distribution
         </p>
+        <p className="text-xs font-medium text-[#f1c40f]">
+          Insight: Bottleneck at Activation → Adoption — 34% stall rate in week 2
+        </p>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-6">
+        <div className="grid items-stretch gap-3 md:grid-cols-3 lg:grid-cols-6">
           {stages.map((stage, index) => {
             const stageCustomers = customers.filter((c) => c.stage === stage.id);
             const avgHealth =
@@ -41,43 +44,49 @@ export function LifecycleJourneyMap({ customers }: { customers: Customer[] }) {
             const Icon = stage.icon;
 
             return (
-              <div key={stage.id} className="relative">
+              <div key={stage.id} className="relative flex min-w-0">
                 <div
                   className={cn(
-                    "rounded-xl border p-4 transition-all hover:scale-[1.02] hover:shadow-lg",
+                    "flex min-h-[9.5rem] min-w-0 flex-1 flex-col rounded-xl border p-4 transition-all hover:shadow-lg lg:min-h-[10.5rem]",
                     stage.color
                   )}
                 >
-                  <div className="flex items-center gap-2">
-                    <Icon className="h-4 w-4 text-foreground/70" />
-                    <span className="text-xs font-semibold">{stage.label}</span>
+                  <div className="flex min-h-[1.25rem] items-start gap-1.5">
+                    <Icon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-foreground/70" />
+                    <span className="text-[11px] font-semibold leading-tight">{stage.label}</span>
                   </div>
-                  <p className="mt-3 text-2xl font-bold">{stageCustomers.length}</p>
-                  <p className="text-[10px] text-muted-foreground">accounts</p>
-                  <div className="mt-3 flex items-center justify-between">
-                    <span className="text-[10px] text-muted-foreground">Avg health</span>
-                    <span
-                      className={cn(
-                        "text-xs font-semibold",
-                        avgHealth >= 70 ? "text-success" : avgHealth >= 50 ? "text-warning" : "text-destructive"
-                      )}
-                    >
-                      {avgHealth}
-                    </span>
+
+                  <div className="mt-3">
+                    <p className="text-2xl font-bold leading-none tabular-nums">{stageCustomers.length}</p>
+                    <p className="mt-1 text-[10px] text-muted-foreground">accounts</p>
                   </div>
-                  <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-background/50">
-                    <div
-                      className={cn(
-                        "h-full rounded-full transition-all",
-                        avgHealth >= 70 ? "bg-success" : avgHealth >= 50 ? "bg-warning" : "bg-destructive"
-                      )}
-                      style={{ width: `${avgHealth}%` }}
-                    />
+
+                  <div className="mt-auto space-y-1.5 pt-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="shrink-0 text-[10px] text-muted-foreground">Avg health</span>
+                      <span
+                        className={cn(
+                          "text-xs font-semibold tabular-nums",
+                          avgHealth >= 70 ? "text-success" : avgHealth >= 50 ? "text-warning" : "text-destructive"
+                        )}
+                      >
+                        {avgHealth}
+                      </span>
+                    </div>
+                    <div className="h-1 overflow-hidden rounded-full bg-background/50">
+                      <div
+                        className={cn(
+                          "h-full rounded-full transition-all",
+                          avgHealth >= 70 ? "bg-success" : avgHealth >= 50 ? "bg-warning" : "bg-destructive"
+                        )}
+                        style={{ width: `${avgHealth}%` }}
+                      />
+                    </div>
+                    <p className="text-[10px] leading-snug text-muted-foreground">{stage.description}</p>
                   </div>
-                  <p className="mt-2 text-[10px] text-muted-foreground">{stage.description}</p>
                 </div>
                 {index < stages.length - 1 && (
-                  <div className="absolute -right-1.5 top-1/2 z-10 hidden h-3 w-3 -translate-y-1/2 rotate-45 border-r border-t border-border bg-card lg:block" />
+                  <div className="pointer-events-none absolute -right-1.5 top-1/2 z-10 hidden h-3 w-3 -translate-y-1/2 rotate-45 border-r border-t border-border bg-card lg:block" />
                 )}
               </div>
             );

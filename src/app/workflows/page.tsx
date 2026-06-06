@@ -1,11 +1,10 @@
 import { AppShell } from "@/components/layout/sidebar";
 import { PageSectionHeader } from "@/components/layout/page-section-header";
 import { WorkflowCard, OrchestrationDiagram } from "@/components/workflows/orchestration-diagram";
-import { StackFlowHorizontal } from "@/components/architecture/stack-diagram";
 import { workflows } from "@/lib/mock-data";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GitBranch, Play, Pause } from "lucide-react";
+import { GitBranch, Pause, Play } from "lucide-react";
 
 export default function WorkflowsPage() {
   const activeCount = workflows.filter((w) => w.status === "active").length;
@@ -14,39 +13,58 @@ export default function WorkflowsPage() {
   const avgCompletion = Math.round(
     workflows.reduce((sum, w) => sum + w.completionRate, 0) / workflows.length
   );
+  const pausedWorkflow = workflows.find((w) => w.status === "paused");
 
   return (
     <AppShell>
       <PageSectionHeader
-        title="Operational Orchestration"
-        description="Pulse-Ops AI monitors workflow performance, detects bottlenecks, and recommends optimizations across the lifecycle pipeline."
+        title="Workflow Orchestration"
+        description="Lifecycle automations triggered from Snowflake events, synced via Hightouch, and executed in Braze."
         pills={[
           { label: `${activeCount} active`, accent: true },
           { label: `${pausedCount} paused` },
+          { label: `${avgCompletion}% avg completion` },
         ]}
-        meta={`${avgCompletion}% avg completion`}
-      >
-        <div className="mt-4 opacity-90">
-          <StackFlowHorizontal />
-        </div>
-      </PageSectionHeader>
+      />
       <div className="flex-1 overflow-y-auto space-y-6 p-8">
-        <div className="grid gap-4 md:grid-cols-4">
+        {pausedWorkflow && (
+          <Card className="glass-card border-warning/25 bg-warning/5">
+            <CardContent className="flex flex-wrap items-start justify-between gap-4 p-5">
+              <div className="flex min-w-0 items-start gap-3">
+                <Pause className="mt-0.5 h-5 w-5 shrink-0 text-warning" aria-hidden />
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-warning">
+                    Paused workflow
+                  </p>
+                  <p className="mt-0.5 text-sm font-semibold">{pausedWorkflow.name}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {pausedWorkflow.pauseReason ?? "Awaiting operator review"}
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {pausedWorkflow.dependencies.map((dep) => (
+                      <Badge key={dep} variant="outline" className="text-[10px]">
+                        {dep}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {pausedWorkflow.aiRecommendation && (
+                <p className="max-w-md text-xs text-muted-foreground">
+                  {pausedWorkflow.aiRecommendation}
+                </p>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
+        <div className="grid gap-4 md:grid-cols-3">
           <Card className="glass-card">
             <CardContent className="flex items-center gap-3 p-5">
               <Play className="h-5 w-5 text-success" />
               <div>
                 <p className="text-2xl font-semibold">{activeCount}</p>
                 <p className="text-xs text-muted-foreground">Active Workflows</p>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="glass-card">
-            <CardContent className="flex items-center gap-3 p-5">
-              <Pause className="h-5 w-5 text-warning" />
-              <div>
-                <p className="text-2xl font-semibold">{pausedCount}</p>
-                <p className="text-xs text-muted-foreground">Paused</p>
               </div>
             </CardContent>
           </Card>

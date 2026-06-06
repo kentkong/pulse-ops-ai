@@ -75,7 +75,7 @@ export default function EventsPage() {
         meta={`${events.length} events in buffer`}
       />
       <div className="flex-1 overflow-y-auto space-y-6 p-8">
-        <div className="grid gap-4 md:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2">
           <Card className="glass-card">
             <CardContent className="flex items-center gap-3 p-5">
               <span
@@ -89,20 +89,8 @@ export default function EventsPage() {
           </Card>
           <Card className="glass-card">
             <CardContent className="p-5">
-              <p className="text-2xl font-semibold">{events.length}</p>
-              <p className="text-xs text-muted-foreground">Events in buffer</p>
-            </CardContent>
-          </Card>
-          <Card className="glass-card">
-            <CardContent className="p-5">
               <p className="text-2xl font-semibold text-destructive">{highSeverity}</p>
-              <p className="text-xs text-muted-foreground">High severity</p>
-            </CardContent>
-          </Card>
-          <Card className="glass-card">
-            <CardContent className="p-5">
-              <p className="text-2xl font-semibold">{eventTypes}</p>
-              <p className="text-xs text-muted-foreground">Event types</p>
+              <p className="text-xs text-muted-foreground">High severity events</p>
             </CardContent>
           </Card>
         </div>
@@ -132,17 +120,20 @@ export default function EventsPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               {[
-                { source: "Snowflake", events: "Product usage, subscriptions", status: "active" },
-                { source: "Braze", events: "Campaign delivery, canvas steps", status: "active" },
-                { source: "Zendesk", events: "Support tickets, CSAT", status: "active" },
-                { source: "Hightouch", events: "Segment updates, score changes", status: "active" },
+                { source: "Snowflake", events: "Product usage, subscriptions", status: "active", latency: "12ms" },
+                { source: "Braze", events: "Campaign delivery, canvas steps", status: "active", latency: "89ms" },
+                { source: "Zendesk", events: "Support tickets, CSAT", status: "active", latency: "240ms" },
+                { source: "Hightouch", events: "Segment updates, score changes", status: "active", latency: "340ms" },
               ].map((source) => (
                 <div key={source.source} className="flex items-start justify-between rounded-lg border border-border/50 bg-accent/20 p-3">
                   <div>
                     <p className="text-sm font-medium">{source.source}</p>
                     <p className="text-xs text-muted-foreground">{source.events}</p>
                   </div>
-                  <Badge variant="success" className="text-[10px]">{source.status}</Badge>
+                  <div className="text-right">
+                    <Badge variant="success" className="text-[10px]">{source.status}</Badge>
+                    <p className="mt-1 font-mono text-[10px] text-muted-foreground">{source.latency}</p>
+                  </div>
                 </div>
               ))}
             </CardContent>

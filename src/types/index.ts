@@ -62,6 +62,7 @@ export interface AIInsight {
   confidence: number;
   affectedCustomers: number;
   recommendedAction: string;
+  source: "Snowflake" | "Hightouch" | "Braze" | "PulseOps AI";
   createdAt: Date;
 }
 
@@ -88,6 +89,7 @@ export interface Workflow {
   lastTriggered: Date;
   dependencies: string[];
   aiRecommendation?: string;
+  pauseReason?: string;
 }
 
 export interface OperationalMetric {

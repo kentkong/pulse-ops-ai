@@ -16,6 +16,8 @@ const layers = [
     borderColor: "border-blue-500/30",
     iconColor: "text-blue-400",
     metrics: ["2.4M events/day", "847 accounts", "12ms latency"],
+    latency: "12ms",
+    status: "operational" as const,
   },
   {
     id: "hightouch",
@@ -27,6 +29,8 @@ const layers = [
     borderColor: "border-violet-500/30",
     iconColor: "text-violet-400",
     metrics: ["34 active syncs", "156 segments", "340ms sync"],
+    latency: "340ms",
+    status: "operational" as const,
   },
   {
     id: "braze",
@@ -38,6 +42,8 @@ const layers = [
     borderColor: "border-pink-500/30",
     iconColor: "text-pink-400",
     metrics: ["6 active canvases", "89ms delivery", "12K sends/day"],
+    latency: "89ms",
+    status: "operational" as const,
   },
   {
     id: "pulseops",
@@ -49,7 +55,9 @@ const layers = [
     borderColor: "border-indigo-500/30",
     iconColor: "text-indigo-400",
     metrics: ["5 active signals", "GPT-4o", "Real-time"],
+    latency: "Real-time",
     highlight: true,
+    status: "operational" as const,
   },
 ];
 
@@ -123,30 +131,92 @@ export function StackDiagram({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export function StackFlowHorizontal() {
+export function StackFlowHorizontal({
+  variant = "default",
+}: {
+  variant?: "default" | "strip";
+}) {
+  const isStrip = variant === "strip";
+
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
+    <div
+      className={cn(
+        "flex flex-wrap items-center justify-start",
+        isStrip ? "stack-flow-strip gap-3 md:gap-5" : "gap-2 md:gap-4"
+      )}
+    >
       {layers.map((layer, index) => {
         const Icon = layer.icon;
         return (
           <div key={layer.id} className="flex items-center gap-2 md:gap-4">
             <div
               className={cn(
-                "flex flex-col items-center rounded-xl border bg-gradient-to-br px-4 py-3 text-center transition-all hover:border-primary/40",
-                layer.color,
+                "flex items-center border text-center transition-all",
+                isStrip
+                  ? "stack-flow-strip__node relative gap-3 rounded-none py-3.5 pl-5 pr-7"
+                  : "flex-col rounded-xl bg-gradient-to-br px-4 py-3 hover:border-primary/40",
+                !isStrip && layer.color,
                 layer.borderColor,
-                layer.highlight && "ring-1 ring-primary/30"
+                isStrip && `stack-flow-strip__node--${layer.id}`,
+                !isStrip && layer.highlight && "ring-1 ring-primary/30",
+                isStrip && layer.highlight && "stack-flow-strip__node--pulse"
               )}
             >
-              <Icon className={cn("h-5 w-5", layer.iconColor)} />
-              <p className="mt-1.5 text-xs font-semibold">{layer.name}</p>
-              <p className="text-[10px] text-muted-foreground">{layer.role}</p>
+              {isStrip && layer.status === "operational" && (
+                <span
+                  className="stack-flow-strip__status"
+                  title={`${layer.name} operational`}
+                  aria-label={`${layer.name} operational`}
+                >
+                  <span className="stack-flow-strip__status-dot animate-live-dot" aria-hidden />
+                </span>
+              )}
+              <Icon className={cn(isStrip ? "h-6 w-6" : "h-5 w-5", layer.iconColor)} />
+              <div className={isStrip ? "min-w-0 text-left" : undefined}>
+                <p className={cn("font-semibold", isStrip ? "text-sm" : "mt-1.5 text-xs")}>
+                  {layer.name}
+                </p>
+                {isStrip && (
+                  <p className="stack-flow-strip__latency">{layer.latency}</p>
+                )}
+                {!isStrip && (
+                  <p className="text-[10px] text-muted-foreground">{layer.role}</p>
+                )}
+              </div>
             </div>
             {index < layers.length - 1 && (
-              <svg width="24" height="12" className="hidden shrink-0 text-primary/40 md:block">
-                <line x1="0" y1="6" x2="20" y2="6" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="flow-line" />
-                <polygon points="20,3 24,6 20,9" fill="currentColor" />
-              </svg>
+              isStrip ? (
+                <div
+                  className="stack-flow-strip__connector hidden md:flex"
+                  style={{ "--connector-delay": `${index * 0.55}s` } as React.CSSProperties}
+                  aria-hidden
+                >
+                  <span className="stack-flow-strip__connector-rail">
+                    <span className="stack-flow-strip__connector-beam" />
+                  </span>
+                  <svg width="10" height="12" className="stack-flow-strip__connector-arrow shrink-0">
+                    <polygon points="0,3 8,6 0,9" fill="currentColor" />
+                  </svg>
+                </div>
+              ) : (
+                <svg
+                  width={24}
+                  height="12"
+                  className="hidden shrink-0 text-primary/40 md:block"
+                >
+                  <line
+                    x1="0"
+                    y1="6"
+                    x2="20"
+                    y2="6"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeDasharray="3 3"
+                    className="flow-line"
+                  />
+                  <polygon points="20,3 24,6 20,9" fill="currentColor" />
+                </svg>
+              )
             )}
           </div>
         );

@@ -228,6 +228,7 @@ export const aiInsights: AIInsight[] = [
     confidence: 87,
     affectedCustomers: 42,
     recommendedAction: "Trigger accelerated onboarding sequence with dedicated CSM touchpoint",
+    source: "Snowflake",
     createdAt: hoursAgo(2),
   },
   {
@@ -240,6 +241,7 @@ export const aiInsights: AIInsight[] = [
     confidence: 92,
     affectedCustomers: 8,
     recommendedAction: "Initiate retention playbook with executive sponsor outreach",
+    source: "Hightouch",
     createdAt: hoursAgo(4),
   },
   {
@@ -252,6 +254,7 @@ export const aiInsights: AIInsight[] = [
     confidence: 79,
     affectedCustomers: 12,
     recommendedAction: "Deploy upsell campaign targeting power users with enterprise tier preview",
+    source: "Snowflake",
     createdAt: hoursAgo(6),
   },
   {
@@ -264,6 +267,7 @@ export const aiInsights: AIInsight[] = [
     confidence: 94,
     affectedCustomers: 156,
     recommendedAction: "Deploy in-app guidance tour and update knowledge base articles",
+    source: "Braze",
     createdAt: hoursAgo(8),
   },
   {
@@ -276,6 +280,7 @@ export const aiInsights: AIInsight[] = [
     confidence: 85,
     affectedCustomers: 5,
     recommendedAction: "Schedule renewal strategy sessions for at-risk Q1 accounts",
+    source: "PulseOps AI",
     createdAt: daysAgo(1),
   },
 ];
@@ -397,6 +402,7 @@ export const workflows: Workflow[] = [
     lastTriggered: daysAgo(3),
     dependencies: ["Snowflake: usage limits", "Hightouch: expansion score"],
     aiRecommendation: "Resume workflow — 12 accounts currently meet expansion criteria",
+    pauseReason: "Paused pending Braze canvas approval for enterprise tier messaging",
   },
   {
     id: "wf_006",

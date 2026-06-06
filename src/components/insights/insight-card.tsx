@@ -42,6 +42,7 @@ export function InsightCard({ insight }: { insight: AIInsight }) {
               <h3 className="text-sm font-medium">{insight.title}</h3>
               <Badge variant={config.variant}>{insight.severity}</Badge>
               <Badge variant="outline" className="text-[10px] capitalize">{insight.category}</Badge>
+              <Badge variant="secondary" className="text-[10px]">{insight.source}</Badge>
             </div>
             <p className="text-sm leading-relaxed text-muted-foreground">{insight.summary}</p>
 

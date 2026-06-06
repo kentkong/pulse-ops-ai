@@ -3,7 +3,6 @@ import { PageSectionHeader } from "@/components/layout/page-section-header";
 import { InsightCard } from "@/components/insights/insight-card";
 import { AIStreamSummary, SignalProcessor } from "@/components/ai/ai-stream";
 import { NextBestActionPanel } from "@/components/actions/next-best-action";
-import { StackDiagram } from "@/components/architecture/stack-diagram";
 import { aiInsights, nextBestActions } from "@/lib/mock-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -19,17 +18,19 @@ const categories = [
 ];
 
 export default function InsightsPage() {
+  const criticalCount = aiInsights.filter((i) => i.severity === "critical").length;
+
   return (
     <AppShell>
       <PageSectionHeader
-        title="AI Intelligence Layer"
-        description="Synthesizing signals from Snowflake, Hightouch, and Braze to generate actionable operational insights and recommendations."
+        title="Active Signals"
+        description="Cross-stack signals synthesized from Snowflake, Hightouch, and Braze into actionable recommendations."
         pills={[
           { label: "GPT-4o" },
-          { label: "5 active signals", accent: true },
-          { label: "847 accounts monitored" },
+          { label: `${aiInsights.length} active signals`, accent: true },
+          { label: `${criticalCount} critical` },
+          { label: "Last analysis 2m ago" },
         ]}
-        meta="Last analysis: 2m ago"
       />
       <div className="flex-1 overflow-y-auto space-y-6 p-8">
         <div className="grid gap-6 lg:grid-cols-3">
@@ -39,26 +40,21 @@ export default function InsightsPage() {
           <SignalProcessor />
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          <Card className="glass-card lg:col-span-1">
-            <CardHeader>
-              <CardTitle className="text-sm">Insight Categories</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              {categories.map((cat) => (
-                <div key={cat.name} className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">{cat.name}</span>
-                  <Badge variant={cat.color as "destructive" | "info" | "default" | "warning" | "success"}>
-                    {cat.count}
-                  </Badge>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-          <div className="lg:col-span-2">
-            <StackDiagram compact />
-          </div>
-        </div>
+        <Card className="glass-card lg:max-w-md">
+          <CardHeader>
+            <CardTitle className="text-sm">Insight Categories</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            {categories.map((cat) => (
+              <div key={cat.name} className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">{cat.name}</span>
+                <Badge variant={cat.color as "destructive" | "info" | "default" | "warning" | "success"}>
+                  {cat.count}
+                </Badge>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
 
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-4">
